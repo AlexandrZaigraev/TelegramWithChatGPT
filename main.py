@@ -1,7 +1,8 @@
 from aiogram import Bot, Dispatcher
-from config import BOT_TOKEN
 import asyncio
 import logging
+from config import BOT_TOKEN
+from handlers import router
 
 
 async def main():
@@ -9,6 +10,7 @@ async def main():
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')  # Понимать что происходит
     bot = Bot(token=BOT_TOKEN)  # Подключение к серверам
     dp = Dispatcher()  # Получить update
+    dp.include_router(router)
     await dp.start_polling(bot)
 
 
